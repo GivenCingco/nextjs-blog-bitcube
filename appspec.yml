@@ -9,6 +9,9 @@ hooks:
     - location: scripts/before_install.sh
       timeout: 600
       runas: root
+    - location: scripts/install_codedeploy_agent.sh
+      timeout: 600
+      runas: root
 
   AfterInstall:
     - location: scripts/install_dependencies.sh
