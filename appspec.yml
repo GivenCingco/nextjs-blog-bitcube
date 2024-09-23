@@ -9,38 +9,19 @@ hooks:
     - location: scripts/stop_server.sh
       timeout: 300
       runas: root
-      permissions:
-        - location: scripts/stop_server.sh
-          mode: 755
-
   BeforeInstall:
     - location: scripts/before_install.sh
       timeout: 3600
       runas: root
-      permissions:
-        - location: scripts/before_install.sh
-          mode: 755
-
   AfterInstall:
     - location: scripts/after_install.sh
       timeout: 300
       runas: root
-      permissions:
-        - location: scripts/after_install.sh
-          mode: 755
-
   ApplicationStart:
     - location: scripts/start_server.sh
       timeout: 3600
       runas: root
-      permissions:
-        - location: scripts/start_server.sh
-          mode: 755
-
   ValidateService:
     - location: scripts/validate_service.sh
       timeout: 3600
       runas: root
-      permissions:
-        - location: scripts/validate_service.sh
-          mode: 755
