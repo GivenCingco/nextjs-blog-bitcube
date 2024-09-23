@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Retrieve values from SSM Parameter Store
-AWS_REGION=$(aws ssm get-parameter --name "/myapp/aws-region" --query "Parameter.Value" --output text)
-ECR_REPOSITORY=$(aws ssm get-parameter --name "/myapp/ecr-repository" --query "Parameter.Value" --output text)
-IMAGE_TAG=$(aws ssm get-parameter --name "/myapp/image-tag" --query "Parameter.Value" --output text)
-CONTAINER_NAME=$(aws ssm get-parameter --name "/myapp/container-name" --query "Parameter.Value" --output text)
+AWS_REGION=$(aws ssm get-parameter --name "/nextjs/aws-region" --query "Parameter.Value" --output text)
+ECR_REPOSITORY=$(aws ssm get-parameter --name "/nextjs/ecr-repository" --query "Parameter.Value" --output text)
+IMAGE_TAG=$(aws ssm get-parameter --name "/nextjs/image-tag" --query "Parameter.Value" --output text)
+CONTAINER_NAME=$(aws ssm get-parameter --name "/nextjs/container-name" --query "Parameter.Value" --output text)
 
 # Pull Docker image from ECR
 echo "Pulling image from ECR: $ECR_REPOSITORY:$IMAGE_TAG"
