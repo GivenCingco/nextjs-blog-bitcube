@@ -28,3 +28,10 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Ignore all .pem files
+*.pem
+
+# Ignore SSH keypairs
+id_rsa
+id_rsa.pub
