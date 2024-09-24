@@ -10,7 +10,7 @@ if [ -z "$PUBLIC_IP" ]; then
 fi
 
 # Check if the application is running by accessing the public IP
-curl -I http://$PUBLIC_IP:80
+curl -I http://$PUBLIC_IP
 
 if [ $? -ne 0 ]; then
   echo "Application validation failed."

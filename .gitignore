@@ -35,3 +35,6 @@ yarn-error.log*
 # Ignore SSH keypairs
 id_rsa
 id_rsa.pub
+
+# Ignore all .zip files
+*.zip
