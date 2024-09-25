@@ -1,4 +1,3 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
 
 
 I separated the Terraform code from the application code for several reasons:
@@ -9,3 +8,28 @@ I separated the Terraform code from the application code for several reasons:
 
 
  
+name: Trigger AWS CodePipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Trigger-pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Trigger AWS CodePipeline
+        run: |
+          aws codepipeline start-pipeline-execution --name bitcube-pipeline
