@@ -44,7 +44,7 @@ jobs:
 
 
 
-# Docker
+# Docker File
 I created a Dockerfile to Dockerize the application with the following content:
 
 
@@ -67,8 +67,11 @@ CMD ["npm", "run", "dev"]
 ```
 
 
-# buildspec.yml
+# buildspec.yml File
 This file automates the process of building a Docker image from your application code and pushing that image to an AWS ECR repository, facilitating a smooth CI/CD pipeline.
+* Deployment Automation: CodeDeploy automates the deployment of applications, ensuring that the process is consistent and reliable.
+* Hooks and Scripts: The use of lifecycle event hooks (like ApplicationStop, BeforeInstall, AfterInstall, etc.) allows you to execute custom scripts at various stages of the deployment, providing control over the deployment process.
+* I'll use the to deploy the application on an Amazon EC2 instance.
 
 ```
 version: 0.2
@@ -90,4 +93,44 @@ phases:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
 ```
+
+
+# appspec.yml File
+The provided YAML file is specifically for AWS CodeDeploy. AWS CodeDeploy is a service that automates the process of deploying applications to various compute services, such as Amazon EC2 instances, AWS Lambda functions, or on-premises servers.
+Deployment Automation: CodeDeploy automates the deployment of applications, ensuring that the process is consistent and reliable.
+
+
+
+
+```
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/app
+
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: root
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 3600
+      runas: root
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 3600
+      runas: root
+  ValidateService:
+    - location: scripts/validate_service.sh
+      timeout: 3600
+      runas: root
+```
+
+
 
