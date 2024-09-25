@@ -8,7 +8,7 @@ I separated the Terraform code from the application code for several reasons:
 
 
 
-#GitHub Actions Workflow
+# GitHub Actions Workflow
 I set up a workflow using GitHub Actions. The following GitHub Actions workflow triggers AWS CodePipeline whenever there are code changes:
 
 ```yaml
