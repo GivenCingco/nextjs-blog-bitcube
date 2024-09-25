@@ -68,10 +68,10 @@ CMD ["npm", "run", "dev"]
 
 
 # buildspec.yml File
-This file automates the process of building a Docker image from your application code and pushing that image to an AWS ECR repository, facilitating a smooth CI/CD pipeline.
+This file automates building a Docker image from your application code and pushing that image to an AWS ECR repository, facilitating a smooth CI/CD pipeline.
 * Deployment Automation: CodeDeploy automates the deployment of applications, ensuring that the process is consistent and reliable.
-* Hooks and Scripts: The use of lifecycle event hooks (like ApplicationStop, BeforeInstall, AfterInstall, etc.) allows you to execute custom scripts at various stages of the deployment, providing control over the deployment process.
-* I'll use the to deploy the application on an Amazon EC2 instance.
+* Hooks and Scripts: Using lifecycle event hooks (like ApplicationStop, BeforeInstall, AfterInstall, etc.) allows you to execute custom scripts at various stages of the deployment, providing control over the deployment process.
+* I'll use the  scripts to deploy the application on an Amazon EC2 instance. They reside in the *scripts* directory.
 
 ```
 version: 0.2
