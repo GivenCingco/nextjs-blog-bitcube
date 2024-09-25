@@ -39,3 +39,25 @@ jobs:
         run: |
           aws codepipeline start-pipeline-execution --name bitcube-pipeline
 ```
+
+# Docker
+I created a Dockerfile to Dockerize the application with the following content:
+
+
+```
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build 
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
+```
